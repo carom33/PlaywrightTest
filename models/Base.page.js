@@ -5,11 +5,9 @@ class BasePage{
 
     /**
      * Method to navigate to path passed
-     * @param {string} path 
      */
     async navigate(){
-        //await this.page.goto('https://www.mytheresa.com/de/en/men');
-        await this.page.goto('');
+        await this.page.goto(process.env.URL);
     }
 }
 module.exports = BasePage;

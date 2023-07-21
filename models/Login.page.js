@@ -5,25 +5,27 @@ class LoginPage extends BasePage {
         this.context = context;
 
         // selectors
-        this.modal = '#privacy-cat-modal';
-        this.acceptCookiesBtn = '.btn.btn-all';
+        this.frameModal = 'iframe[id=\'privacy-iframe\']';
+        this.acceptCookiesBtn = '//button[@class=\'btn btn-all\']';
         this.iconUser = '//span[@class=\'icon__user\']';
         this.emailTxt =  '.signinform [name=\'email\']';
         this.passwordTxt =  '.signinform [name=\'password\']';
         this.loginBtn = '.signinform__submit .button';
         this.overviewTitle = '.overview__title';
+        this.badCredentialsTxt = ".notification--error .notification__content";
+        this.requiredEmailTxt = '.form__element--email .forminput__content__error';
+        this.requiredPasswordTxt = '.form__element--password .forminput__content__error';
     }
     /**
      * Method to navigate to Login page using parent's method
      */
-    async navigate(){  
-       await this.context.addCookies([{name:"mt_csf", value: "15340000", url: "https://www.mytheresa.com/de/en/men"}]);
-       await super.navigate();
+    async navigate() {
+        await this.context.addCookies([{ name: "mt_csf", value: "15340000", url: "https://www.mytheresa.com/de/en/men" }]);
+        await super.navigate();
 
-       //this.page.on('dialog', dialog => dialog.accept());
-       //await this.page.getByRole('button').click();
-       //await this.page.click(this.acceptCookiesBtn);
-       //await this.page.getByRole('button', { name: 'ACCEPT ALL AND CONTINUE' }).click();
+        // Close the frame Accepting and continue
+        const frame = await this.page.frameLocator(this.frameModal);
+        await frame.locator(this.acceptCookiesBtn).click();
     }
     /**
      * Method to login using email and password
@@ -40,6 +42,21 @@ class LoginPage extends BasePage {
     async getWelcomeTitle(){
         let title = await this.page.innerText(this.overviewTitle)
         return title;
+    }
+
+    async getBadCredentialsError(){
+        let error = await this.page.innerText(this.badCredentialsTxt)
+        return error
+    }
+
+    async getEmailError(){
+        let error = await this.page.innerText(this.requiredEmailTxt)
+        return error
+    }
+
+    async getPasswordError(){
+        let error = await this.page.innerText(this.requiredPasswordTxt)
+        return error
     }
 
 }

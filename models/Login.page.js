@@ -20,6 +20,7 @@ class LoginPage extends BasePage {
      * Method to navigate to Login page using parent's method
      */
     async navigate() {
+        // configure cookies to avoid captcha
         await this.context.addCookies([{ name: "mt_csf", value: "15340000", url: "https://www.mytheresa.com/de/en/men" }]);
         await super.navigate();
 

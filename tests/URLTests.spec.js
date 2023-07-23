@@ -13,7 +13,7 @@ test('page has no errors', async ({ page }) => {
       errors.push({ message, type: message.type() })
   
     })
-    await page.goto('https://www.mytheresa.com/de/en/men')
+    await page.goto(process.env.URL)
     console.log(logs)
     expect.soft(logs.length).toBe(0)
     console.log(errors)
@@ -21,7 +21,7 @@ test('page has no errors', async ({ page }) => {
   }); 
   
     test('responseOk', async ({ request }) => {
-      const response = await request.get('https://www.mytheresa.com/de/en/men')
-      //const response = await request.get(config.baseUrl)
+      const response = await request.get(process.env.URL)
       await expect(response.status()).toBe(200);
+      await expect(response).toBeOK();
     }); 

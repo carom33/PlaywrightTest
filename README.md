@@ -13,3 +13,6 @@ npx playwright test tests/MytheresaTests
 
 * Run a set of test files
 npx playwright test tests/MytheresaTests tests/URLTests tests/PullRequests
+
+* Test case #3
+Save the information in the file PR.csv in the root

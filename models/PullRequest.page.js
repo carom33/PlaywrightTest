@@ -38,9 +38,6 @@ class PullRequestPage extends BasePage {
         catch(e){
             return false
         }
-        
-        
-
     }
 }
 

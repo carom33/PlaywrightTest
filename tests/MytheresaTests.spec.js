@@ -12,8 +12,7 @@ test('login succesfully', async ({ page, context }) => {
 
   await loginPage.login('carom33@maildrop.cc', 'MytheresaTest');
   await expect(await loginPage.getWelcomeTitle()).toHaveText == "Welcome Carolina";
-
-}); 
+});
 
 test('login wrong password', async ({ page, context }) => {
   let loginPage = new LoginPage(page, context);
@@ -22,7 +21,6 @@ test('login wrong password', async ({ page, context }) => {
 
   await loginPage.login('carom33@maildrop.cc', 'pass');
   await expect(await loginPage.getBadCredentialsError()).toHaveText == "The credentials you have inserted are not correct";
-
 });
 
 test('login wrong email', async ({ page, context }) => {

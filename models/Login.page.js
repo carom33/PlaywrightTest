@@ -59,6 +59,5 @@ class LoginPage extends BasePage {
         let error = await this.page.innerText(this.requiredPasswordTxt)
         return error
     }
-
 }
 module.exports = LoginPage;

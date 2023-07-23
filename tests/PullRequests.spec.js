@@ -40,10 +40,3 @@ for (let j = 0; j < titleList.length; j++) {
     }
   })
 }); 
-
-test('pull request API call', async ({ request }) => {
-  const response = (await request.fetch('https://github.com/appwrite/appwrite/pulls'))
-  const responseBody = await response.json()
- 
-
-})
